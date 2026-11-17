@@ -1,0 +1,19 @@
+
+services:
+  pedidos-api:
+    build: .
+    container_name: pedidos-aws-api
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://pedidos-aws-db:5432/pedidos_db
+      DB_USERNAME: pedidos_user
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8080:8080"
+    networks:
+      - pedidos-network
+
+networks:
+  pedidos-network:
+    external: true
+    name: pedidos-network
